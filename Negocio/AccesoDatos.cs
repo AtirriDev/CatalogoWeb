@@ -26,7 +26,8 @@ namespace Negocio
         public AccesoDatos()
         {
             // ACA ESTABLECEMOS QUE CUANDO INVOQUEMOS ESTE CONSTRUCTOR YA VA A TENER PREDEFINIDO ESTOS PARAMETROS 
-            conexion = new SqlConnection("server=.\\SQLEXPRESS; database=CATALOGO_WEB_DB; integrated security=true");
+            //conexion = new SqlConnection("server=.\\SQLEXPRESS; database=CATALOGO_WEB_DB; integrated security=true");
+            conexion = new SqlConnection(ConfigurationManeger.AppSettings["cadenaConexion"]);
             comando = new SqlCommand();
         }
 
