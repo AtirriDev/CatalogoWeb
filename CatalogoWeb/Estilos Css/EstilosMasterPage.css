@@ -1,0 +1,83 @@
+.slider2{ width: 100%; height: 25px; margin: auto; overflow: hidden; background-color: sandybrown; margin: 0;}
+
+.track
+{
+  display: flex ; animation: scroll 10s linear infinite;
+  -webkit-animation: scroll 10s linear infinite;
+  width: calc(2000px * 12);
+}
+.slider .sli2{ width: 200px; height: 150px}
+.slider .sli2 p
+{
+  width: 100%; height: 100%; 
+}
+p{color: white}
+
+@keyframes scroll
+{  
+   0% { -webkit-animation:translateX(0); transform: translateX(0)}
+   100% { -webkit-animation:translateX(calc(-200px * 4)); transform: translateX(calc(-200px *4))}
+}
+
+
+/* Comienza código del footer */
+.footer {
+    height: auto; /* Dejar que la altura se ajuste automáticamente */
+    text-align: center;
+    background-color: sandybrown;
+}
+
+    .footer .row {
+        display: flex;
+        flex-wrap: wrap; /* Permite que los elementos se ajusten a nuevas líneas */
+        gap: 15px; /* Agrega espacio entre las columnas */
+        justify-content: center; /* Centra los elementos horizontalmente */
+        align-items: center; /* Centra los elementos verticalmente */
+        margin: 0 auto;
+        width: 100%;
+    }
+
+.row .col-md-3 {
+    
+    flex: 1 1 25%; /* Permite que las columnas crezcan o se reduzcan según sea necesario */
+    max-width: 25%; /* Máximo ancho del 25% en pantallas grandes */
+    height: auto; /* Altura ajustable según contenido */
+    padding: 10px; /* Agrega un poco de espacio interno */
+    box-sizing: border-box;
+}
+
+@media (max-width: 576px) {
+    .row .col-md-3 {
+        max-width: 100%; /* En pantallas pequeñas, ocupa el 100% */
+        flex: 1 1 100%; /* Ajusta la columna al 100% del ancho */
+    }
+}
+
+.footer h6 {
+    color: white; /* Cambia 'darkblue' al color que prefieras */
+}
+
+/*Estilos pagina Home*/
+
+/* Elimina márgenes y rellenos del carrusel */
+.carousel {
+    
+    margin: 0; /* Sin márgenes */
+    padding: 0; /* Sin rellenos */
+}
+
+.carousel-inner {
+    margin: 0; /* Sin márgenes */
+    padding: 0; /* Sin rellenos */
+    width: 100%; /* Asegura que ocupe todo el ancho */
+}
+
+    /* Ajusta las imágenes */
+    .carousel-inner img {
+        width: 100%;
+        height: auto;
+    }
+
+  
+
+

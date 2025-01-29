@@ -1,0 +1,197 @@
+﻿/* Estilos generales */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden; /* Evita el desbordamiento horizontal */
+}
+
+/* Contenedor principal */
+.container {
+    
+    min-height: 50vh; /* Usa min-height en lugar de height */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden; /* Evita que el contenido se desborde */
+    
+}
+
+/* Estilos para el banner y el SVG */
+.banner {
+    text-align: center;
+    margin-top: 150px;
+    padding: 0 20px; /* Añade un poco de padding a los lados */
+}
+
+    .banner svg {
+        width: 100%; /* Ocupa el ancho disponible */
+        max-width: 500px; /* Limita el tamaño máximo */
+        height: auto; /* Mantiene la proporción */
+    }
+
+.texto {
+    color: #FFC75F;
+    font-size: 1.2em;
+    margin-top: -10px;
+    margin-left: 200px;
+    animation: SecondAnimation 1s ease-out 1.5s forwards;
+    position: relative;
+    opacity: 0;
+}
+
+@keyframes SecondAnimation {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+svg path {
+    fill: transparent;
+    stroke: black;
+    stroke-width: 0.4;
+    stroke-dasharray: 50;
+    stroke-dashoffset: 50;
+    animation: TextAnimation 2s ease-in-out 1 forwards;
+}
+
+@keyframes TextAnimation {
+    0% {
+        stroke-dashoffset: 50;
+    }
+
+    100% {
+        fill: black;
+        stroke-dashoffset: 0;
+    }
+}
+
+/* Estilos para el contenedor del formulario */
+.form-container {
+    margin-top: 20px;
+    position: relative;
+    overflow: hidden; /* Oculta cualquier contenido que se desborde */
+    width: 100%; /* Ocupa el ancho disponible */
+    max-width: 400px; /* Limita el ancho máximo */
+    margin-left: auto;
+    margin-right: auto; /* Centra el contenedor */
+    opacity: 0;
+    transform: translateY(50px);
+    animation: formAnimation 1.5s ease-in-out 2s forwards;
+}
+
+@keyframes formAnimation {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Estilos para ambos formularios (inicio de sesión y registro) */
+.login-form,
+.register-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    box-sizing: border-box; /* Incluye el padding en el ancho */
+}
+
+/* Formulario de registro inicialmente oculto */
+.register-form {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    transform: translateX(100%);
+    opacity: 0;
+}
+
+    /* Estilos para los inputs (compartidos entre ambos formularios) */
+    .login-form .form-input,
+    .register-form .form-input {
+        padding: 10px;
+        width: 100%; /* Ocupa el ancho disponible */
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box; /* Incluye el padding en el ancho */
+    }
+
+    /* Estilos para los botones de envío (compartidos entre ambos formularios) */
+    .login-form .btn-submit,
+    .register-form .btn-submit,
+    .switch-form {
+        padding: 10px 20px;
+        background-color: black;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        width: auto; /* Ancho automático para que los botones no ocupen el 100% */
+        flex: 1; /* Distribuye el espacio equitativamente */
+    }
+
+        .login-form .btn-submit:hover,
+        .register-form .btn-submit:hover {
+            background-color: #333;
+        }
+
+/* Estilos específicos para el botón "Registrarse" y "Volver" */
+.switch-form {
+    background: white;
+    color: black;
+    border: 1px solid black;
+}
+
+    .switch-form:hover {
+        background: #f0f0f0;
+    }
+
+/* Clase para mostrar el formulario de registro */
+.form-container.show-register .login-form {
+    transform: translateX(-100%);
+    opacity: 0;
+}
+
+.form-container.show-register .register-form {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+/* Estilos para el contenedor de los botones */
+.form-buttons {
+    display: flex;
+    flex-direction: row; /* Coloca los botones en fila */
+    gap: 10px; /* Espacio entre los botones */
+    width: 100%; /* Ocupa el ancho disponible */
+    justify-content: center; /* Centra los botones horizontalmente */
+}
+
+/* Asegúrate de que el formulario de registro sea visible cuando se active */
+.form-container.show-register .register-form {
+    transform: translateX(0);
+    opacity: 1;
+    position: relative; /* Cambia a posición relativa para que los botones sean visibles */
+}
+
+/* Oculta el formulario de inicio de sesión cuando se activa el registro */
+.form-container.show-register .login-form {
+    transform: translateX(-100%);
+    opacity: 0;
+    position: absolute; /* Mantén el formulario de inicio de sesión oculto */
+}
