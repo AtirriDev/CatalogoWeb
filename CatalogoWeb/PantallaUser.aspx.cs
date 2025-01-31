@@ -64,7 +64,7 @@ namespace CatalogoWeb
             }
             else
             {
-                CargarDatosUsuario(UsuarioLogin, txtNombre, txtApellido, txtEmail, txtPass, imgUsuario);
+                //CargarDatosUsuario(UsuarioLogin, txtNombre, txtApellido, txtEmail, txtPass, imgUsuario);
                 txtNombre.Enabled = false;
                 txtApellido.Enabled = false;
                 txtEmail.Enabled = false;

@@ -82,12 +82,14 @@
     <Content Include="Estilos Css\EstilosMasterPage.css" />
     <Content Include="Estilos Css\EstilosNuevoLogin.css" />
     <Content Include="Favoritos.aspx" />
+    <Content Include="Global.asax" />
     <Content Include="Home.aspx" />
     <Content Include="DetalleProducto.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="PantallaAdmin.aspx" />
     <Content Include="PantallaError.aspx" />
     <Content Include="PantallaUser.aspx" />
+    <Content Include="Script_Db\CATALOGO_WEB_DB.sql" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -97,6 +99,9 @@
     </Compile>
     <Compile Include="Favoritos.aspx.designer.cs">
       <DependentUpon>Favoritos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>
@@ -152,6 +157,13 @@
   <ItemGroup>
     <Content Include="MiMaster.Master" />
     <None Include="packages.config" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile1.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile2.pubxml" />
+    <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\FTPProfile1.pubxml" />
+    <None Include="Properties\PublishProfiles\FTPProfile2.pubxml" />
+    <None Include="Properties\PublishProfiles\FTPProfile3.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

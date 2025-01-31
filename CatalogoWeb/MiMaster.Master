@@ -14,6 +14,8 @@
     <link href="Estilos%20Css/EstilosMasterPage.css" rel="stylesheet" />
     <%--   kit de font awesome--%>
     <script src="https://kit.fontawesome.com/f19ca37fd2.js" crossorigin="anonymous"></script>
+     <%--  jQuery --%>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 
 
 
