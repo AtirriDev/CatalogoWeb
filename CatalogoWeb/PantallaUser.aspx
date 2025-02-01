@@ -48,20 +48,7 @@
 
     </div>
     <asp:HiddenField ID="hfModal" runat="server" />
-     <script>
-         function mostrarImagen(event) {
-             const input = event.target;
-             if (input.files && input.files[0]) {
-                 const reader = new FileReader();
-                 reader.onload = function (e) {
-                     // Obtén el control de imagen ASP.NET por su ID generado.
-                     const imgControl = document.getElementById('<%= imgUsuario.ClientID %>');
-                     imgControl.src = e.target.result;
-                 };
-                 reader.readAsDataURL(input.files[0]);
-             }
-         }
-    </script>
+     
 </asp:Content>
 
 

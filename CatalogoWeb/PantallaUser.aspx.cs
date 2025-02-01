@@ -27,22 +27,20 @@ namespace CatalogoWeb
             
             if (!IsPostBack)
             {
-                if (Session["Usuario"] != null)
-                {
-                    UsuarioLogin = (Usuario)Session["Usuario"];
-                   
-                    if (UsuarioLogin.IsAdmin == true)
-                    {
-                        Response.Redirect("Home.aspx", false);
-                    }
-                }
-                else
+                UsuarioLogin = (Usuario)Session["Usuario"];
+
+                if (UsuarioLogin == null)
                 {
                     Response.Redirect("Home.aspx", false);
                     return;
                 }
-                
-                
+
+                if (UsuarioLogin.IsAdmin)
+                {
+                    Response.Redirect("Home.aspx", false);
+                }
+
+
                 txtNombre.Enabled = false;
                 txtApellido.Enabled = false;
                 txtEmail.Enabled = false;
@@ -61,30 +59,10 @@ namespace CatalogoWeb
 
 
 
+
+
             }
-            else
-            {
-                //CargarDatosUsuario(UsuarioLogin, txtNombre, txtApellido, txtEmail, txtPass, imgUsuario);
-                txtNombre.Enabled = false;
-                txtApellido.Enabled = false;
-                txtEmail.Enabled = false;
-                txtPass.Enabled = false;
-                MostrarInputFile = false;
-                btnGuardarCambios.Visible = false;
-                btnEditar.Enabled = true;
-
-                if (Session["Usuario"] != null)
-                {
-
-                    UsuarioLogin = (Usuario)Session["Usuario"];
-
-                   
-
-
-                }
-
-                
-            }
+            
         }
 
         protected void btnEditar_Click(object sender, EventArgs e)
@@ -129,18 +107,20 @@ namespace CatalogoWeb
                 // dsp ya le paso todos los campos de los txt para que sobreeescriba
                 aux.Nombre = string.IsNullOrEmpty(txtNombre.Text) ? null : txtNombre.Text;
                 aux.Apellido = string.IsNullOrEmpty(txtApellido.Text) ? null : txtApellido.Text;
-                
-                
+
+
+               
 
                 // Si se selecciona algo en el input
                 if (txtFileImage.PostedFile != null && txtFileImage.PostedFile.ContentLength > 0)
                 {
+                    
 
-                    txtFileImage.PostedFile.SaveAs(ruta + "perfil-" + UsuarioLogin.Id.ToString() + ".jpg"); // hacemos un nombre dinamico con el id para que no se repitan 
+                    txtFileImage.PostedFile.SaveAs(ruta + "Usuario-" + $"id__{UsuarioLogin.Id.ToString()}" + ".jpg"); // hacemos un nombre dinamico con el id para que no se repitan 
 
-                   aux.UrlImagen = "perfil-" + UsuarioLogin.Id.ToString() + ".jpg";
+                    aux.UrlImagen = "Usuario-" + $"id__{UsuarioLogin.Id.ToString()}" + ".jpg";
 
-
+                    
 
                 }
                 else
@@ -155,13 +135,15 @@ namespace CatalogoWeb
                 UserNeg.ActualizarPerfil(aux);
 
 
+                // Limpiar caché y forzar recarga de la imagen . por que no me la actualizaba aunque se cambiaba en la carpeta documentos
+                Response.Cache.SetCacheability(HttpCacheability.NoCache);
+                Response.Cache.SetNoStore();
 
 
-               
                 // pasamos la bandera del input a false para q se oculte
                 MostrarInputFile = false;
-                
-                CargarDatosUsuario(UsuarioLogin, txtNombre, txtApellido, txtEmail, txtPass, imgUsuario);
+                Response.Redirect("PantallaUser.aspx",false);
+
 
 
             }
@@ -209,10 +191,11 @@ namespace CatalogoWeb
                 }
                 else
                 {
-                    // para leer la imagen desde una carpeta usamos ~
-                  
 
-                    urlimage.ImageUrl = "~/Documentos/" + UsuarioLogin.UrlImagen.ToString(); 
+
+                    //Cargar el control img 
+                    // Para acceder a una carpeta siempre se utiliza virgulilla  ~
+                    imgUsuario.ImageUrl = $"~/Documentos/{UsuarioLogin.UrlImagen}?v={DateTime.Now.Ticks}";
 
 
                 }
@@ -231,16 +214,7 @@ namespace CatalogoWeb
 
         }
 
-        protected void txtImg_TextChanged(object sender, EventArgs e)
-        {
-            if (UsuarioLogin.UrlImagen == null)
-                imgUsuario.ImageUrl = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png";
-            else
-                imgUsuario.ImageUrl = "~/Documentos/" + UsuarioLogin.UrlImagen;
-
-
-
-        }
+        
     }
 
 }
